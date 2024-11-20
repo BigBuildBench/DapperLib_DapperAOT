@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net48</TargetFrameworks>
+        <NoWarn>$(NoWarn);IDE0042;CS8002;CA1816</NoWarn>
+        <RootNamespace>Dapper.AOT.Test</RootNamespace>
+        <DefineConstants>$(DefineConstants);DAPPERAOT_INTERNAL</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="Accessors/Data/**/*.*.cs" />
+        <None Include="Accessors/Data/**/*.*" />
+        <None Update="Accessors/Data/**/*.*" CopyToOutputDirectory="PreserveNewest" />
+
+        <Compile Remove="Interceptors/**/*.*.cs" />
+        <None Include="Interceptors/**/*.*" />
+        <None Update="Interceptors/**/*.*" CopyToOutputDirectory="PreserveNewest" />
+
+        <Compile Include="..\..\src\Dapper.AOT.Analyzers\AotGridReader.cs" Link="AotGridReader.cs" />
+        <Compile Include="..\..\src\Dapper.AOT.Analyzers\InGeneration\DapperHelpers.cs" Link="DapperHelpers.cs" />
+
+        <None Update="**/*.output.*">
+            <DependentUpon>$([System.String]::Copy(%(Filename)).Replace('.output', '.input.cs'))</DependentUpon>
+        </None>
+        <None Update="**/*.output.netfx.*">
+            <DependentUpon>$([System.String]::Copy(%(Filename)).Replace('.output.netfx', '.input.cs'))</DependentUpon>
+        </None>
+		<None Update="**/*DAP*.*.cs*">
+			<DependentUpon>$([System.String]::Copy(%(Filename)).Replace('.VB.cs', '.cs'))</DependentUpon>
+		</None>
+
+	</ItemGroup>
+</Project>

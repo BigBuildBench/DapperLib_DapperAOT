@@ -1,0 +1,1 @@
+@devenv Dapper.AOT.sln

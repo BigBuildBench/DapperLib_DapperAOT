@@ -1,0 +1,43 @@
+<Project>
+    <PropertyGroup>
+        <SignAssembly>True</SignAssembly>
+        <DelaySign>False</DelaySign>
+        <Description>Build time (AOT) tools for Dapper</Description>
+        <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Dapper.AOT.snk</AssemblyOriginatorKeyFile>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Dapper</RootNamespace>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageIcon>Dapper.png</PackageIcon>
+        <Authors>Marc Gravell</Authors>
+        <Copyright>Marc Gravell, 2021 onwards</Copyright>
+        <PackageProjectUrl>https://aot.dapperlib.dev/</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/DapperLib/DapperAOT/</RepositoryUrl>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <CheckEolTargetFramework>false</CheckEolTargetFramework>
+        <WarningsAsErrors>true</WarningsAsErrors>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <NoWarn>$(NoWarn);IDE0057</NoWarn>
+        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <DefaultLanguage>en-US</DefaultLanguage>
+        <IncludeSymbols>false</IncludeSymbols>
+        <AnalysisMode>latest-Recommended</AnalysisMode>
+        <LangVersion>preview</LangVersion>
+        <Features>($Features);strict</Features>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)Dapper.png" Visible="false">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="Dapper_SqlSyntax" />
+    </ItemGroup>
+</Project>
